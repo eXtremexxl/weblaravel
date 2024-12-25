@@ -32,6 +32,9 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $task->is_completed = !$task->is_completed;
         $task->save();
-        return redirect('/');
+        return response()->json([
+            'success' => true,
+            'is_completed' => $task -> is_completed,
+        ]);
     }
 }
