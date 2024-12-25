@@ -17,13 +17,14 @@ class TaskController extends Controller
     {
         $request->validate(['title' => 'required|string|max:255']);
         Task::create(['title' => $request->title]);
-        return redirect('/');
+        return redirect('/')->with('success' , 'Задача добавлена');
+        
     }
 
     public function destroy($id)
     {
         Task::findOrFail($id)->delete();
-        return redirect('/');
+        return redirect('/')->with('success' , 'Задача удалена');
     }
 
     public function update($id)

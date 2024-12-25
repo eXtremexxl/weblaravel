@@ -2,13 +2,27 @@
 <html lang="en">
 <head>
     <title>tmanager</title>
+
+    <script>
+        function showAlert(message){
+            if (message){
+                alert(message)
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Task Manager</h1>
 
+    @if (session ('success'))
+    <script>
+        showAlert('{{session ('success') }}');
+    </script>
+    @endif
+    
     <form action="/tasks" method="post">
         @csrf
-        <input type="text" name="title" placeholder="enter task" required>
+        <input type="text" name="title" placeholder="enter task" required maxlength = "255">
         <button type="submit">Add Task</button>
     </form>
 
@@ -32,6 +46,5 @@
         </li>
         @endforeach
     </ul>
-
 </body>
 </html>
